@@ -1,0 +1,11 @@
+this is a file
+it could be a log file
+the point is it is a large file
+actually a very huge file
+and there is no way you can even open it
+and say you want to find a line and some surrounding lines
+one line above it
+a SpecificException
+one line below it
+and another line below it
+why not...
