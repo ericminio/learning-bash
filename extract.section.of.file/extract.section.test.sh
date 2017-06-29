@@ -4,7 +4,15 @@ source ./extract.section.sh
 
 testThatExtractSectionWorks()
 {
-    extractSection SpecificException 1 2 input.txt > output.txt
+    extractSection SpecificException 1 2 input-single-instance.txt > output.txt
+
+    diff ./output.txt ./expected.txt
+    assertTrue 'Expected output differs.' $?
+}
+
+testThatExtractSectionSelectsTheFirstMatchingOccurence()
+{
+    extractSection SpecificException 1 2 input-two-instances.txt > output.txt
 
     diff ./output.txt ./expected.txt
     assertTrue 'Expected output differs.' $?
