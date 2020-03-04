@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./assert.sh
+source ./lib/assert.sh
 for f in ./demo/*.sh; do source $f; done
 
 for test_method in `declare -F | grep test_ | cut -d" " -f3`; do 
