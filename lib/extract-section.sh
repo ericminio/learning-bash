@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function extractSection() {
   token=$1
   before=$2
