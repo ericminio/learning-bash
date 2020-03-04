@@ -1,11 +1,11 @@
 #!/bin/bash
 
 function extractSection() {
-  token=$1
-  before=$2
-  after=$3
-  input=$4
-  line=`grep -n $token $input | cut -f1 -d':' | head -1`
+  local token=$1
+  local before=$2
+  local after=$3
+  local input=$4
+  local line=`grep -n $token $input | cut -f1 -d':' | head -1`
   if [[ $line ]]
   then
     cat -n $input | head -n $((line+after)) | tail -n $((before+after+1))
