@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function assertequals {
     if [ "$1" = "$2" ]; then

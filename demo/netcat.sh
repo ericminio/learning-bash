@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function test_netcat_can_handle_http {
     local server=`{

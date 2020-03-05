@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 source ./lib/assert.sh
 for f in ./demo/*.sh; do source $f; done
 
-for test_method in `declare -F | grep test_ | cut -d" " -f3`; do 
+for test_method in `grep test_ ./demo/*.sh | cut -d" " -f2`; do 
     echo $test_method
     $test_method 
     if [ "$?" != "0" ]; then

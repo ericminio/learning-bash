@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function test_can_add {
     local a=1
