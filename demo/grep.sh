@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function test_grep_can_extract_matching_lines {
     local actual=`{

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . ./lib/assert.sh
 for f in ./demo/*.sh; do . $f; done

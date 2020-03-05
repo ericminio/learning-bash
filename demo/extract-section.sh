@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ./lib/extract-section.sh
 

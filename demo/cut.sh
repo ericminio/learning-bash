@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function test_cut_field_index_starts_with_one {
     local actual=`{

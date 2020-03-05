@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function sut {
     echo "hello world :)"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function extractSection() {
   local token=$1
