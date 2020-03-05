@@ -1,7 +1,7 @@
 #!/bin/sh
 
-source ./lib/assert.sh
-for f in ./demo/*.sh; do source $f; done
+. ./lib/assert.sh
+for f in ./demo/*.sh; do . $f; done
 
 for test_method in `grep test_ ./demo/*.sh | cut -d" " -f2`; do 
     echo $test_method
