@@ -1,5 +1,9 @@
 dist: xenial
 language: bash
+services:
+    - docker
+before_script:
+    - docker build -t bash:alpine .
 script:
     - chmod +x ./run.sh
-    - ./run.sh
+    - docker run -it --rm --name bash -v ${PWD}:/usr/local/src bash:alpine ./run.sh

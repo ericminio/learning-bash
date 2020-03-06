@@ -1,7 +1,10 @@
-FROM ubuntu:xenial
+FROM alpine:3.9.5
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    netcat
+RUN apk update && apk add \
+    bash \
+    curl 
 
-RUN echo "PS1='\n\[\e[32m\]$(whoami) \[\e[33m\]in $(pwd)\[\e[0m\] \n> '" >> ~/.bashrc      
+RUN echo "PS1='\n\[\e[32m\]\u \[\e[33m\]in \w\[\e[0m\] \n> '" >> ~/.bashrc
+ENTRYPOINT [ "bash" ]
+
+WORKDIR /usr/local/src
