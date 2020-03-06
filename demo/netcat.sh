@@ -13,5 +13,5 @@ function test_netcat_can_handle_http {
     printf "%s\n" "${message[@]}" | nc -l -p 8333 &
     local body=`curl --silent --noproxy localhost, http://localhost:8333`
     
-    assertequals "$body" "<html><body>greetings</body></html>"
+    assertequals "$body" "<html><body>hello</body></html>"
 }
