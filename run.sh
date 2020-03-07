@@ -1,26 +1,37 @@
 #!/bin/bash
 
 source ./lib/assert.sh
-for f in ./demo/*.sh; do source $f; done
 
+files=./demo/*.sh
+for f in $files; do source $f; done
+
+function all {
+    cat $files | grep test_
+}
+function only {
+    grep test_only
+}
+function count {
+    wc -l
+}
+function names {
+    cut -d" " -f2
+}
 function run_test {
     echo $1
-    $1 
-    if [ "$?" != "0" ]; then
+    $1
+    if (( $? != 0 )); then
         echo -e "$FAILED_EXPECTATION"
         exit 1
     fi
 }
 
-if (( `grep test_only_ ./demo/*.sh | wc -l` > 0 )); then
-    
-    for test_method in `grep test_only_ ./demo/*.sh | cut -d" " -f2`; do 
-        run_test $test_method
-    done
-else
-    for test_method in `grep test_ ./demo/*.sh | cut -d" " -f2`; do 
-        run_test $test_method
-    done
+test=`all`
+if (( `echo "$test" | only | count` > 0 )); then
+    test=`echo "$test" | only`
 fi
 
+for name in `echo "$test" | names`; do 
+    run_test $name
+done
 echo "SUCCESS"
