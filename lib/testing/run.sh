@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source ./lib/assert.sh
+source ./lib/testing/assert.sh
 
-files=./demo/*.sh
+files=$1/*.sh
 for f in $files; do source $f; done
 
 function all {
@@ -31,7 +31,7 @@ if (( `echo "$test" | only | count` > 0 )); then
     test=`echo "$test" | only`
 fi
 
-for name in `echo "$test" | names`; do 
+for name in `echo "$test" | names`; do
     run_test $name
 done
 echo "SUCCESS"

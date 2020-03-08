@@ -4,4 +4,4 @@ services:
     - docker
 script:
     - chmod +x ./run.sh
-    - docker-compose run --rm bash ./run.sh
+    - docker-compose run --rm bash ./lib/testing/run.sh ./demo
