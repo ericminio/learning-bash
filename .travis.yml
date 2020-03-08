@@ -3,5 +3,5 @@ language: bash
 services:
     - docker
 script:
-    - chmod +x ./run.sh
+    - chmod +x ./lib/testing/run.sh
     - docker-compose run --rm bash ./lib/testing/run.sh ./demo
