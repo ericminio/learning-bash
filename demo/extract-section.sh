@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./lib/extract-section.sh
+source ./share/extract-section.sh
 
 function test_extract_section_works_as_expected {
     extractSection SpecificException 1 2 ./demo/extract-section-data/input-single-instance.txt > ./demo/extract-section-data/output.txt
