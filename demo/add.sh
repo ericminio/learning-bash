@@ -5,6 +5,6 @@ function test_addition {
     local b=2
     local actual=$(( a + b ))
 
-    assertequals $actual 3
+    assertequals $actual 5
 }
 
