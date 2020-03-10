@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./share/testing/assert.sh
+source ./share/testing/lib/assert.sh
 
 files=$1/*.sh
 for f in $files; do source $f; done
