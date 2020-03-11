@@ -6,6 +6,7 @@ function test_can_run_several_tests {
     ./share/testing/lib/test.sh ./share/testing/examples/several-tests >> ./share/testing/spec/actual
     cat ./share/testing/spec/actual
     cat ./share/testing/spec/expected-several-tests
+    ls -la ./share/testing/spec/
     delta=`diff ./share/testing/spec/actual ./share/testing/spec/expected-several-tests`
 
     assertequals "$delta" ""
