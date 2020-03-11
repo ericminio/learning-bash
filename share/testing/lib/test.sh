@@ -9,7 +9,7 @@ function assertequals {
     fi
 }
 function all {
-    find $folder -name *.sh -exec cat {} \; | grep test_ 
+    find $folder -name *.sh -exec cat {} \; | grep test_ | sort
 }
 function only {
     grep test_only
