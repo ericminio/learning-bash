@@ -1,10 +1,5 @@
 #!/bin/bash
 
-in=$1
-
-files=$(find $in -name *.sh)
-for f in $files; do source $f; done
-
 function assertequals {
     if [ "$1" = "$2" ]; then
         return 0
@@ -14,7 +9,7 @@ function assertequals {
     fi
 }
 function all {
-    find $in -name *.sh -exec cat {} \; | grep test_
+    find $folder -name *.sh -exec cat {} \; | grep test_ 
 }
 function only {
     grep test_only
@@ -33,6 +28,9 @@ function run_test {
         exit 1
     fi
 }
+
+folder=$1
+for f in `find $folder -name *.sh`; do source $f; done
 
 test=`all`
 if (( `echo "$test" | only | count` > 0 )); then
