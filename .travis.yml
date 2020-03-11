@@ -3,6 +3,6 @@ language: bash
 services:
     - docker
 script:
-    - chmod +x ./share/testing/lib/run.sh
-    - docker-compose run --rm bash ./share/testing/lib/run.sh ./share/testing
-    - docker-compose run --rm bash ./share/testing/lib/run.sh ./demo
+    - chmod +x ./share/testing/lib/test.sh
+    - docker-compose run --rm bash ./share/testing/lib/test.sh ./share/testing
+    - docker-compose run --rm bash ./share/testing/lib/test.sh ./demo
