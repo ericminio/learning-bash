@@ -1,6 +1,8 @@
 #!/bin/bash
 
-files=$1/*.sh
+in=$1
+
+files=$(find $in -name *.sh)
 for f in $files; do source $f; done
 
 function assertequals {
@@ -11,9 +13,8 @@ function assertequals {
         return 1
     fi
 }
-
 function all {
-    cat $files | grep test_
+    find $in -name *.sh -exec cat {} \; | grep test_
 }
 function only {
     grep test_only

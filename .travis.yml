@@ -4,5 +4,5 @@ services:
     - docker
 script:
     - chmod +x ./share/testing/lib/test.sh
-    - docker-compose run --rm bash ./share/testing/lib/test.sh ./share/testing
+    - docker-compose run --rm bash ./share/testing/lib/test.sh ./share/testing/spec
     - docker-compose run --rm bash ./share/testing/lib/test.sh ./demo
