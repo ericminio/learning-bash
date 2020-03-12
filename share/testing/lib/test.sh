@@ -8,8 +8,11 @@ function assertequals {
         return 1
     fi
 }
+function files {
+    find $folder -name *.sh
+}
 function all {
-    find $folder -name *.sh -exec cat {} \; | grep test_ | sort
+    cat $(files | sort) | grep test_ 
 }
 function only {
     grep test_only
@@ -30,7 +33,7 @@ function run_test {
 }
 
 folder=$1
-for f in `find $folder -name *.sh`; do source $f; done
+for f in $(files); do source $f; done
 
 test=`all`
 if (( `echo "$test" | only | count` > 0 )); then
