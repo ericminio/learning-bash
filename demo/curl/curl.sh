@@ -1,42 +1,36 @@
 #!/bin/bash
 
-function extract {
-    read request
-    echo $request >> ./demo/curl/incoming
-    read host
-    echo $host >> ./demo/curl/incoming
-    read authorization
-    echo $authorization >> ./demo/curl/incoming
-    read agent
-    echo $agent >> ./demo/curl/incoming
-
-    echo $authorization | cut -d" " -f3 | sed 's/\r$//' > ./demo/curl/credentials
-}
-
 function answer {
+    read request
+    (echo $request | sed 's/\r$//') >> ./demo/curl/incoming
+    read host
+    (echo $host | sed 's/\r$//') >> ./demo/curl/incoming
+    read authorization
+    (echo $authorization | sed 's/\r$//') >> ./demo/curl/incoming
+
+    credentials=`echo $authorization | sed 's/\r$//' | cut -d" " -f3`
+
     local message=(
 		"HTTP/1.1 200 OK"
 		"Content-Type: text/html; charset=UTF-8"
 		"Content-Length: 31"
 		"Server: netcat"
 		""
-		"<html><body>hello</body></html>"
+		"$credentials"
 		""
 	)
     printf "%s\n" "${message[@]}"
 }
 
 function test_curl_encodes_basic_auth_for_you {
-	rm -f ./demo/curl/fifo
+	rm -f /tmp/fifo
     rm -f ./demo/curl/incoming
-    rm -f ./demo/curl/credentials
 
-    mkfifo ./demo/curl/fifo
-    ( extract && answer) < <(nc -l -p 9999 < ./demo/curl/fifo) > ./demo/curl/fifo &
-
+    mkfifo /tmp/fifo
+    ( answer) < <(nc -l -p 9999 < /tmp/fifo) > /tmp/fifo &
+    
     body=$(curl --user login:password --silent --noproxy localhost, http://localhost:9999)
-
-    credentials=$(cat ./demo/curl/credentials)
-
-    assertequals "$credentials" "bG9naW46cGFzc3dvcmQ="
+    cat ./demo/curl/incoming
+    
+    assertequals "$body" "bG9naW46cGFzc3dvcmQ="
 }
