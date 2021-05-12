@@ -9,7 +9,7 @@ function assertequals {
     fi
 }
 function files {
-    find $folder -name *.sh
+    find $folder -name "*.sh"
 }
 function all {
     cat $(files | sort) | grep test_ 
