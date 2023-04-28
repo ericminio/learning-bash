@@ -20,10 +20,44 @@ function test_loop_through_interval {
 
 function test_loop_through_array {
     local sum=0
-    local numbers=(1 2 3)
+    local numbers=(10 20 30)
     for i in ${numbers[@]}; do
         sum=$(( sum + $i))
     done
 
+    assertequals $sum 60
+}
+
+function test_loop_through_array_indices {
+    local sum=0
+    local numbers=(10 20 30)
+    for i in ${!numbers[@]}; do
+        sum=$(( sum + $i))
+    done
+
+    assertequals $sum 3
+}
+
+function test_loop_through_sub_array_numbers {
+    local sum=0
+    local numbers=("1:one" "2:two" "3:three")
+    for item in ${numbers[@]}; do
+        local split=(${item//:/ })
+        local value=split[0]
+        sum=$(( sum + $value))
+    done
+
     assertequals $sum 6
+}
+
+function test_loop_through_sub_array_strings {
+    local sum=""
+    local numbers=("1->one" "2->two" "3->three")
+    for item in ${numbers[@]}; do
+        local split=(${item//->/ })
+        local value=${split[1]}
+        sum="$sum$value"
+    done
+
+    assertequals "$sum" "onetwothree"
 }
