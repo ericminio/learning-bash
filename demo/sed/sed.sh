@@ -23,3 +23,11 @@ function test_sed_needs_correct_regexp_mod_to_be_case_insensitive {
 
     assertequals "$actual" "find you"
 }
+
+function test_find_and_sed_to_replace_in_folder { 
+    echo "" > ./demo/sed/actual
+    find ./demo/sed/data/* -exec sed 's/me/you/g' {} >> ./demo/sed/actual \; 
+    local delta=`diff ./demo/sed/actual ./demo/sed/expected`
+
+    assertequals "$delta" ""
+}

@@ -29,3 +29,13 @@ function test_grep_offers_inversion {
 
     assertequals "$actual" "line 2 has not"
 }
+
+function test_grep_can_disclose_file_name_only {
+    local actual=`{
+        echo 'this is line 1'
+        echo 'line 2 has love'
+        echo 'this is line 3'
+    } | grep -l love`
+
+    assertequals "$actual" "(standard input)"
+}
