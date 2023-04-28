@@ -31,3 +31,11 @@ function test_find_and_sed_to_replace_in_folder {
 
     assertequals "$delta" ""
 }
+
+function test_grep_and_sed_to_replace_in_folder { 
+    echo "" > ./demo/sed/actual
+    grep -rl me ./demo/sed/data | xargs sed 's/me/you/g' >> ./demo/sed/actual
+    local delta=`diff ./demo/sed/actual ./demo/sed/expected`
+
+    assertequals "$delta" ""
+}

@@ -39,3 +39,23 @@ function test_grep_can_disclose_file_name_only {
 
     assertequals "$actual" "(standard input)"
 }
+
+function test_grep_is_case_sensitive_by_default {
+    local actual=`{
+        echo 'this is line 1'
+        echo 'line 2 has love'
+        echo 'THIS is line 3'
+    } | grep THIS`
+
+    assertequals "$actual" "THIS is line 3"
+}
+
+function test_grep_can_be_case_sensitive {
+    local actual=`{
+        echo 'this is line 1'
+        echo 'line 2 has love'
+        echo 'this is line 3'
+    } | grep -i LOVE`
+
+    assertequals "$actual" "line 2 has love"
+}
