@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function test_for_through_values {
+function test_loop_through_values {
     local sum=0
     for i in 1 2 3; do
         sum=$(( sum + $i))
@@ -9,7 +9,7 @@ function test_for_through_values {
     assertequals $sum 6
 }
 
-function test_for_through_interval {
+function test_loop_through_interval {
     local sum=0
     for i in {1..4}; do
         sum=$(( sum + $i))
@@ -18,12 +18,12 @@ function test_for_through_interval {
     assertequals $sum 10
 }
 
-function test_for_through_interval_with_variable {
+function test_loop_through_array {
     local sum=0
-    local count=5
-    for ((i=0; i<=$count; i++)); do
+    local numbers=(1 2 3)
+    for i in ${numbers[@]}; do
         sum=$(( sum + $i))
     done
 
-    assertequals $sum 15
+    assertequals $sum 6
 }
