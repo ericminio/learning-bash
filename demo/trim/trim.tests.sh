@@ -2,10 +2,6 @@
 
 source './demo/trim/trim.sh'
 
-function inspect {
-    printf "%s" "$1" | od -c
-}
-
 function test_trim_can_remove_leading_spaces {
     local input=$'   123'
     local actual=$(printf "%s" "$input" | trim)    
