@@ -1,16 +1,6 @@
 #!/bin/bash
 
-function oneliner {
-    tr -d '\n' | tr -d '\r'
-}
-
-function compact {
-    sed -E 's/[ ]+/ /g'
-}
-
-function trim {
-    oneliner | compact | sed -E 's/(^[ ]*|[ ]*$)//g'
-}
+source './demo/trim/trim.sh'
 
 function inspect {
     printf "%s" "$1" | od -c
