@@ -9,7 +9,7 @@ function compact {
 }
 
 function trim {
-    oneliner | compact | sed -E 's/^[ ]*//g' | sed -E 's/[ ]*$//g' 
+    oneliner | compact | sed -E 's/(^[ ]*|[ ]*$)//g'
 }
 
 function inspect {
