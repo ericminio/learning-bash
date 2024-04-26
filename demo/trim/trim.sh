@@ -1,12 +1,6 @@
 #!/bin/bash
 
-function oneliner {
-    tr -d '\r\n'
-}
-
-function shrink {
-    sed -E 's/[ ]+/ /g'
-}
+source './demo/support/utils.sh'
 
 function trim {
     oneliner | shrink | sed -E 's/(^[ ]*|[ ]*$)//g'

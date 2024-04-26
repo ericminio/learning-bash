@@ -1,14 +1,8 @@
 #!/bin/bash
 
-function oneliner {
-    tr -d '\r\n'
-}
-
-function compact {
-    oneliner | tr -d ' '
-}
+source './demo/support/utils.sh'
 
 function json {
-    oneliner | compact | sed 's/{/{ /g' | sed 's/}/ }/g' | sed 's/,/, /g'
+    oneliner | compact | sed -e 's/{/{ /g' -e 's/}/ }/g' -e 's/,/, /g'
 }
 
