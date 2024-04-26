@@ -1,3 +1,2 @@
-[![Build Status](https://travis-ci.org/ericminio/learning-bash.svg?branch=master)](https://travis-ci.org/ericminio/learning-bash)
+[![tests](https://github.com/ericminio/learning-bash/actions/workflows/tests.yml/badge.svg)](https://github.com/ericminio/learning-bash/actions/workflows/tests.yml)
 
-Study file [.travis.yml](.travis.yml)
