@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source './demo/trim/trim.sh'
+source './about/trim/trim.sh'
 
 function test_trim_can_remove_leading_spaces {
     local input=$'   123'
@@ -38,18 +38,18 @@ function test_trim_can_remove_leading_cr_lf {
 }
 
 function test_trim_digests_grep_one_line {
-    echo "hello " > ./demo/incoming
-    echo "world" >> ./demo/incoming
-    local actual=$(cat ./demo/incoming | grep "hello" | trim)
+    echo "hello " > ./about/incoming
+    echo "world" >> ./about/incoming
+    local actual=$(cat ./about/incoming | grep "hello" | trim)
 
     assertequals "$actual" "hello"
 }
 
 function test_trim_digests_grep_two_lines {
-    echo "hello world     " > ./demo/incoming
-    echo "hello my friend" >> ./demo/incoming
-    echo "bye for now    " >> ./demo/incoming
-    local actual=$(cat ./demo/incoming | grep "hello" | trim)    
+    echo "hello world     " > ./about/incoming
+    echo "hello my friend" >> ./about/incoming
+    echo "bye for now    " >> ./about/incoming
+    local actual=$(cat ./about/incoming | grep "hello" | trim)    
 
     assertequals "$actual" "hello world hello my friend"
 }

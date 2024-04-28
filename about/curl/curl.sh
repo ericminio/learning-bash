@@ -2,11 +2,11 @@
 
 function answer {
     read request
-    (echo $request | sed 's/\r$//') >> ./demo/curl/incoming
+    (echo $request | sed 's/\r$//') >> ./about/curl/incoming
     read host
-    (echo $host | sed 's/\r$//') >> ./demo/curl/incoming
+    (echo $host | sed 's/\r$//') >> ./about/curl/incoming
     read authorization
-    (echo $authorization | sed 's/\r$//') >> ./demo/curl/incoming
+    (echo $authorization | sed 's/\r$//') >> ./about/curl/incoming
 
     credentials=`echo $authorization | sed 's/\r$//' | cut -d" " -f3`
 
@@ -24,13 +24,13 @@ function answer {
 
 function test_curl_encodes_basic_auth_for_you {
 	rm -f /tmp/fifo
-    rm -f ./demo/curl/incoming
+    rm -f ./about/curl/incoming
 
     mkfifo /tmp/fifo
     ( answer) < <(nc -l -p 9999 < /tmp/fifo) > /tmp/fifo &
     
     body=$(curl --user login:password --silent --noproxy localhost, http://localhost:9999)
-    cat ./demo/curl/incoming
+    cat ./about/curl/incoming
     
     assertequals "$body" "bG9naW46cGFzc3dvcmQ="
 }

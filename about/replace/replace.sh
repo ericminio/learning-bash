@@ -26,25 +26,25 @@ function seed_incoming {
 }
 
 function test_replace_can_focus_on_path {
-    seed_incoming ./demo/replace/incoming
-    duplicate_and_adjust ./demo/replace/incoming ./demo/replace/actual
-    local actual=$(cat ./demo/replace/actual/import)
+    seed_incoming ./about/replace/incoming
+    duplicate_and_adjust ./about/replace/incoming ./about/replace/actual
+    local actual=$(cat ./about/replace/actual/import)
 
     assertequals "$actual" "/before/you/after me"
 }
 
 function test_replace_can_focus_on_variable {
-    seed_incoming ./demo/replace/incoming
-    duplicate_and_adjust ./demo/replace/incoming ./demo/replace/actual
-    local actual=$(cat ./demo/replace/actual/variable)
+    seed_incoming ./about/replace/incoming
+    duplicate_and_adjust ./about/replace/incoming ./about/replace/actual
+    local actual=$(cat ./about/replace/actual/variable)
 
     assertequals "$actual" "VARIABLE_WITH_THAT_NAME=42 # this is great"
 }
 
 function test_replace_is_strict_with_regex_matching {
-    seed_incoming ./demo/replace/incoming
-    duplicate_and_adjust ./demo/replace/incoming ./demo/replace/actual
-    local actual=$(cat ./demo/replace/actual/no)
+    seed_incoming ./about/replace/incoming
+    duplicate_and_adjust ./about/replace/incoming ./about/replace/actual
+    local actual=$(cat ./about/replace/actual/no)
 
     assertequals "$actual" "do not touch me"
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source './demo/support/utils.sh'
+source './about/support/utils.sh'
 
 function opening {
     sed -E -e 's/\{\s+/{ /g'
