@@ -1,7 +1,6 @@
 #!/bin/bash
 
-source './about/json/json.sh'
-source './about/support/inspect.sh'
+source './dist/utils.sh'
 
 function test_json {
     local input=$' {  \n   "alive": true, \n  "value": 42 \n  }'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source './about/trim/trim.sh'
+source './dist/utils.sh'
 
 function test_trim_can_remove_leading_spaces {
     local input=$'   123'
