@@ -12,13 +12,13 @@ function trim {
 }
 
 function opening {
-    sed -E -e 's/\{\s+/{ /g'
+    sed -E -e 's/\{\s*/{ /g'
 }
 function closing {
-    sed -E -e 's/\s+\}/ }/g'
+    sed -E -e 's/\s*\}/ }/g'
 }
 function comma {
-    sed -E -e 's/,\s+/, /g'
+    sed -E -e 's/,\s*/, /g'
 }
 function colon {
     sed -E -e 's/:\s+/:/g'
