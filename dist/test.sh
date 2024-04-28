@@ -4,7 +4,7 @@ function assertequals {
     if [ "$1" = "$2" ]; then
         return 0
     else
-        FAILED_EXPECTATION="FAILURE\n\nExpected: $2 \nBut was : $1"
+        FAILED_EXPECTATION="\nFAILURE\nExpected: $2 \nBut was : $1"
         return 1
     fi
 }
@@ -12,7 +12,7 @@ function files {
     find $folder -name "*.sh"
 }
 function all {
-    cat $(files | sort) | grep test_ 
+    cat $(files | sort) | grep -e "^function test_"
 }
 function only {
     grep -e "^function test_only"
@@ -43,4 +43,5 @@ fi
 for name in `echo "$test" | names`; do
     run_test $name
 done
-echo "SUCCESS"
+testcount=`echo "$test" | count`
+echo "SUCCESS - $testcount test(s) run"
