@@ -19,6 +19,5 @@ jobs:
                   cat /etc/hosts
             - name: run tests
               run: |
-                  chmod +x ./share/testing/lib/test.sh
-                  docker-compose run --rm bash ./share/testing/lib/test.sh ./share/testing/spec
-                  docker-compose run --rm bash ./share/testing/lib/test.sh ./about
+                  chmod +x ./dist/test.sh
+                  docker-compose run --rm bash ./dist/test.sh ./about

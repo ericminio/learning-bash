@@ -15,7 +15,7 @@ function all {
     cat $(files | sort) | grep test_ 
 }
 function only {
-    grep test_only
+    grep -e "^function test_only"
 }
 function count {
     wc -l
