@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source './about/support/utils.sh'
+source './dist/utils.sh'
 
 function trim {
     oneliner | shrink | sed -E 's/(^\s*|\s*$)//g'
