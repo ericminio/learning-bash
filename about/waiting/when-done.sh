@@ -6,7 +6,7 @@ function wait_for_this {
     ls -l | grep "about"
 }
 
-function test_only_waiting_stops_when_done {    
+function test_waiting_stops_when_done {    
     result=$(waiting "about folder" wait_for_this)
 
     assertequals "$result" "about folder is ready"
