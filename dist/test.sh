@@ -8,7 +8,7 @@ function assertequals {
     if [ "$1" = "$2" ]; then
         return 0
     else
-        FAILED_EXPECTATION="\n${fail_color}FAILURE${reset_color}\nExpected: $2 \nBut was : $1"
+        FAILED_EXPECTATION="\n${fail_color}FAIL${reset_color}\n\nExpected: $2 \nBut was : $1"
         return 1
     fi
 }
@@ -48,4 +48,4 @@ for name in `echo "$test" | names`; do
     run_test $name
 done
 testcount=`echo "$test" | count`
-echo -e "${pass_color}SUCCESS${reset_color} - $testcount test(s) run"
+echo -e "\n${pass_color}PASS${reset_color} - $testcount test(s) run"

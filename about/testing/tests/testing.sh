@@ -13,7 +13,7 @@ function test_discloses_tests_count {
     ./dist/test.sh ./about/testing/examples/several-tests >> ./about/testing/actual
     count=$(cat ./about/testing/actual | grep "test(s) run")
 
-    assertequals "$count" "[0;102;30mSUCCESS[0m - 2 test(s) run"
+    assertequals "$count" "[0;102;30mPASS[0m - 2 test(s) run"
 }
 
 function test_can_report_failure {
@@ -24,7 +24,6 @@ function test_can_report_failure {
     echo "}" >> ./about/testing/examples/failure/failure.sh
     ./dist/test.sh ./about/testing/examples/failure >> ./about/testing/actual
     delta=`diff ./about/testing/actual ./about/testing/tests/expected-failure`
-    cat ./about/testing/examples/failure/failure.sh
     rm ./about/testing/examples/failure/failure.sh
     
     assertequals "$delta" ""

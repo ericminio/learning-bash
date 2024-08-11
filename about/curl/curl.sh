@@ -22,7 +22,7 @@ function answer {
     printf "%s\n" "${message[@]}"
 }
 
-function test_curl_encodes_basic_auth_for_you {
+function osxflaky_curl_encodes_basic_auth_for_you {
 	rm -f /tmp/fifo
     rm -f ./about/curl/incoming
 
