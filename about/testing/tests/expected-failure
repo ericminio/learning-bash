@@ -1,5 +1,5 @@
 test_one
 
-FAILURE
+[0;101;30mFAILURE[0m
 Expected: 2 
 But was : 1

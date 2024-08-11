@@ -13,7 +13,7 @@ function test_discloses_tests_count {
     ./dist/test.sh ./about/testing/examples/several-tests >> ./about/testing/actual
     count=$(cat ./about/testing/actual | grep "test(s) run")
 
-    assertequals "$count" "SUCCESS - 2 test(s) run"
+    assertequals "$count" "[0;102;30mSUCCESS[0m - 2 test(s) run"
 }
 
 function test_can_report_failure {

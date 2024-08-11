@@ -1,10 +1,14 @@
 #!/bin/bash
 
+pass_color="\033[0;102;30m"
+fail_color="\033[0;101;30m"
+reset_color="\033[0m"
+
 function assertequals {
     if [ "$1" = "$2" ]; then
         return 0
     else
-        FAILED_EXPECTATION="\nFAILURE\nExpected: $2 \nBut was : $1"
+        FAILED_EXPECTATION="\n${fail_color}FAILURE${reset_color}\nExpected: $2 \nBut was : $1"
         return 1
     fi
 }
@@ -44,4 +48,4 @@ for name in `echo "$test" | names`; do
     run_test $name
 done
 testcount=`echo "$test" | count`
-echo "SUCCESS - $testcount test(s) run"
+echo -e "${pass_color}SUCCESS${reset_color} - $testcount test(s) run"
