@@ -18,9 +18,15 @@ function test_discloses_tests_count {
 
 function test_can_report_failure {
     : > ./about/testing/actual
+    echo "#!/bin/bash" > ./about/testing/examples/failure/failure.sh
+    echo "function test_failure {" >> ./about/testing/examples/failure/failure.sh
+    echo "    assertequals 1 2" >> ./about/testing/examples/failure/failure.sh
+    echo "}" >> ./about/testing/examples/failure/failure.sh
     ./dist/test.sh ./about/testing/examples/failure >> ./about/testing/actual
     delta=`diff ./about/testing/actual ./about/testing/tests/expected-failure`
-
+    cat ./about/testing/examples/failure/failure.sh
+    rm ./about/testing/examples/failure/failure.sh
+    
     assertequals "$delta" ""
 }
 
