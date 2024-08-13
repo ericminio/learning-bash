@@ -13,6 +13,14 @@ function assertequals {
         return 1
     fi
 }
+function assertmatch {
+    if [[ "$1" =~ $2 ]]; then
+        return 0
+    else
+        FAILED_EXPECTATION="${fail_color}FAIL${reset_color}\n\nExpected to match: $2 \nBut was          : $1"
+        return 1
+    fi
+}
 function files {
     find $folder -name "*.sh"
 }
