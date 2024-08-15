@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function oneliner {
-    tr -d '\r\n'
+    tr -d '\n'
 }
 
 function shrink {
