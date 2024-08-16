@@ -17,7 +17,8 @@ jobs:
         run: |
           sudo echo "172.17.0.1 host.docker.internal" | sudo tee -a /etc/hosts
           cat /etc/hosts
+      - name: submodule
+        runn: git submodule update --init
       - name: run tests
         run: |
-          chmod +x ./dist/test.sh
-          docker compose run --rm bash ./dist/test.sh ./about
+          docker-compose -f .github/workflows/docker-compose.yml run --rm bash ./yop-testing-bash/dist/test.sh ./school
