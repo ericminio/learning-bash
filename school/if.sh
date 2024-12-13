@@ -8,6 +8,14 @@ function yes {
         echo "no"
     fi
 }
+function lower {
+    value=15
+    if [ $value -lt 42 ]; then
+        echo "yes"
+    else
+        echo "no"
+    fi
+}
 function yes_string {
     value="hello world"
     check="hello world"
@@ -63,6 +71,12 @@ function test_if_number_does_not_equal_42 {
     local actual=$(no)
 
     assertequals "$actual" "no"
+}
+
+function test_if_number_lower_than_42 {
+    local actual=$(lower)
+
+    assertequals "$actual" "yes"
 }
 
 function test_if_strings_equal {
