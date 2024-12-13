@@ -3,7 +3,7 @@
 source './support/yop-testing-bash/dist/utils.sh'
 
 function json_extract {
-    sed "s/.*\"$1\":*\([^,}]*\).*/\1/" | trim | sed 's/"//g'
+    grep -o "\"$1\":[^,}]*" | head -1 | cut -d':' -f2 | trim | sed 's/"//g'
 }
 
 function test_json_extract_first_value {
@@ -32,5 +32,20 @@ function test_json_extract_string_with_spaces {
     local actual=$(printf "%s" "$input" | json_extract "value")    
 
     assertequals "$actual" "Wonder Woman"
+}
+
+function test_json_extract_first_match {
+    local input='{ 
+        "id":1, 
+        "user": { 
+            "id":2 
+        },
+        product: {
+            "id":3
+        }
+    }'
+    local actual=$(printf "%s" "$input" | json | json_extract "id")    
+
+    assertequals "$actual" "1"
 }
 
