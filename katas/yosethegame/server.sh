@@ -3,24 +3,7 @@
 source 1-hello-yose.sh
 source 2-ping.sh
 source 3-prime-factors.sh
-
-# inspired by https://dev.to/leandronsp/building-a-web-server-in-bash-part-ii-parsing-http-14kg
-rm -f response
-mkfifo response
-
-function route {
-  local request="$1"
-
-  if [[ $request == "GET /" ]]; then
-    echo "home"
-  elif [[ $request == "GET /ping" ]]; then
-    echo "ping"
-  elif [[ $request =~ 'primeFactors' ]]; then
-    echo "primeFactors"
-  else
-    echo "not-found"
-  fi
-}
+source router.sh
 
 function handler {
   while read line; do
@@ -45,5 +28,9 @@ function handler {
 
   echo -ne $RESPONSE > response
 }
+
+# inspired by https://dev.to/leandronsp/building-a-web-server-in-bash-part-ii-parsing-http-14kg
+rm -f response
+mkfifo response
 
 while true; do cat response | nc -l -p 8333 | handler ; done

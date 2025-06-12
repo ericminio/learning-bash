@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function is_primeFactors {
+  if [[ $1 =~ 'primeFactors' ]]; then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
+
 function decompose {
   local number="$1"
 
