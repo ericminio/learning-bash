@@ -8,7 +8,8 @@ function is_ping {
   fi
 }
 
-function pong {
-  echo '{"pong":"hi there!"}'
+function ping {
+  local body='{"pong":"hi there!"}'
+  echo "HTTP/1.1 200\r\nContent-Type: application/json\r\n\r\n$body"
 }
 

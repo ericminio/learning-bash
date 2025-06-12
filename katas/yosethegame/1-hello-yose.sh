@@ -9,6 +9,7 @@ function is_home {
 }
 
 function home {
-  cat index.html
+  local body=$(cat index.html)
+  echo "HTTP/1.1 200\r\nContent-Type: text/html\r\n\r\n$body"
 }
 

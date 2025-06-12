@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source 0-not-found.sh
 source 1-hello-yose.sh
 source 2-ping.sh
 source 3-prime-factors.sh
@@ -19,11 +20,13 @@ function handler {
     fi
   done
 
+  
   case $(route "$REQUEST") in
-    "home") RESPONSE="HTTP/1.1 200\r\nContent-Type: text/html\r\n\r\n$(home)" ;;
-    "ping") RESPONSE="HTTP/1.1 200\r\nContent-Type: application/json\r\n\r\n$(pong)" ;;
+    "home") RESPONSE=$(home) ;;
+    "ping") RESPONSE=$(ping) ;;
     "primeFactors") RESPONSE=$(primeFactors $URL) ;;
-          *) RESPONSE="HTTP/1.1 404 NotFound\r\n\r\n\r\nNot Found" ;;
+    
+    "notFound") RESPONSE=$(notFound);;
   esac
 
   echo -ne $RESPONSE > response
