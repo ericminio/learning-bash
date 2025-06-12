@@ -18,10 +18,10 @@ function decompose {
 
 function primeFactors {
   local url="$1"
-  local NUMBER_REGEX='.*number=(.*?)$'
-  local number=$(echo $url | sed -E "s/$NUMBER_REGEX/\1/")
-  local NUMBER_REGEX='^[0-9]+$'
-  if [[ ! $number =~ $NUMBER_REGEX ]]; then
+  local INCOMING_REGEX='.*number=(.*?)$'
+  local number=$(echo $url | sed -E "s/$INCOMING_REGEX/\1/")
+  local IS_NUMBER_REGEX='^[0-9]+$'
+  if [[ ! $number =~ $IS_NUMBER_REGEX ]]; then
     echo "HTTP/1.1 400\r\nContent-Type: application/json\r\n\r\n{\"number\":\"$number\",\"error\":\"not a number\"}"
     return
   fi
