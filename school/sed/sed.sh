@@ -26,7 +26,10 @@ function test_sed_needs_correct_regexp_mod_to_be_case_insensitive {
 
 function test_find_and_sed_to_replace_in_folder { 
     echo "" > ./school/sed/actual
+    
     find ./school/sed/data/* -exec sed 's/me/you/g' {} >> ./school/sed/actual \; 
+
+    sort ./school/sed/actual -o ./school/sed/actual
     local delta=`diff ./school/sed/actual ./school/sed/expected`
 
     assertequals "$delta" ""
@@ -34,7 +37,10 @@ function test_find_and_sed_to_replace_in_folder {
 
 function test_grep_and_sed_to_replace_in_folder { 
     echo "" > ./school/sed/actual
+    
     grep -rl me ./school/sed/data | xargs sed 's/me/you/g' >> ./school/sed/actual
+    
+    sort ./school/sed/actual -o ./school/sed/actual
     local delta=`diff ./school/sed/actual ./school/sed/expected`
 
     assertequals "$delta" ""
