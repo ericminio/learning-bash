@@ -25,7 +25,7 @@ function decompose {
 }
 
 function primeFactors {
-  local url="$1"
+  local url="$2"
   local INCOMING_REGEX='.*number=(.*?)$'
   local number=$(echo $url | sed -E "s/$INCOMING_REGEX/\1/")
   local IS_NUMBER_REGEX='^[0-9]+$'

@@ -6,27 +6,27 @@ source 2-ping.sh
 source 3-prime-factors.sh
 source router.sh
 
-function handler {
+# inspired by https://dev.to/leandronsp/building-a-web-server-in-bash-part-ii-parsing-http-14kg
+function incoming {
   while read line; do
     trline=`echo $line | tr -d '[\r\n]'`    
 
     HEADLINE_REGEX='(.*?)\s(.*?)\sHTTP.*?'
     if [[ $trline =~ $HEADLINE_REGEX ]]; then
-      METHOD=$(echo $trline | sed -E "s/$HEADLINE_REGEX/\1/")
-      URL=$(echo $trline | sed -E "s/$HEADLINE_REGEX/\2/")
-      echo $METHOD $URL
-      REQUEST="$METHOD $URL"
+      REQUEST=$(echo $trline | sed -E "s/$HEADLINE_REGEX/\1 \2/")
       break
     fi
   done
+  echo $REQUEST
+}
 
-  RESPONSE=$($(route "$REQUEST") $URL)
+function handler {
+  REQUEST=$(incoming)
+  RESPONSE=$($(route "$REQUEST") $REQUEST)
 
   echo -ne $RESPONSE > response
 }
 
-# inspired by https://dev.to/leandronsp/building-a-web-server-in-bash-part-ii-parsing-http-14kg
 rm -f response
 mkfifo response
-
 while true; do cat response | nc -l -p 8333 | handler ; done
