@@ -20,14 +20,7 @@ function handler {
     fi
   done
 
-  
-  case $(route "$REQUEST") in
-    "home") RESPONSE=$(home) ;;
-    "ping") RESPONSE=$(ping) ;;
-    "primeFactors") RESPONSE=$(primeFactors $URL) ;;
-    
-    "notFound") RESPONSE=$(notFound);;
-  esac
+  RESPONSE=$($(route "$REQUEST") $URL)
 
   echo -ne $RESPONSE > response
 }
